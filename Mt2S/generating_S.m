@@ -13,18 +13,20 @@ a=2*i-1;
 for m=1:2*(i+j-1)
     for n=(m+1):2*(i+j-1)
         
-        if ( (m<n) && (n <= a))
+        if ( n <= a )
             S(m,n)=M0(ceil(m/2)+L*rem(m+1,2) , ceil(n/2)+L*rem(n+1,2)  );
             
         elseif( (m<=a) && (a<n) )
             n=n-a;
-            S(m,n)=Mt(ceil(m/2)+L*rem(m+1,2) , ceil(n/2)+L*rem(n+1,2)  );
+            S(m,n+a)=Mt(ceil(m/2)+L*rem(m+1,2) , ceil(n/2)+L*rem(n+1,2)  );
             n=n+a;
             
-        elseif( (a<m) && (m<n) )
+            % here, S(m+a,n+a) spend me over a night time to debug.
+            
+        elseif(  a<m  )
             m=m-a;
             n=n-a;
-            S(m,n)=M0(ceil(m/2)+L*rem(m+1,2) , ceil(n/2)+L*rem(n+1,2)  );
+            S(m+a,n+a)=M0(ceil(m/2)+L*rem(m+1,2) , ceil(n/2)+L*rem(n+1,2)  );
             n=n+a;
             m=m+a;
             
@@ -35,10 +37,6 @@ for m=1:2*(i+j-1)
 
     end
 end
-    
- 
-
-
 
 S=S-S.';
 

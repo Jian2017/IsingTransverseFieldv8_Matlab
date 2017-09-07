@@ -1,3 +1,6 @@
+% this test single space-time correlation, using pfaffian method
+
+
 addpath('./Pfaffian');
 addpath('./Mt2SS');
 addpath('./Mt2S');
@@ -16,8 +19,11 @@ M(L,L)=1;
 Mt=fermionfermionPlusMinusCorrelation(0,phi,psi,E);
 M0=fermionfermionPlusMinusCorrelation(0,phi,psi,E);
 i=10;
-j=10;
+j=14;
 
-S=generating_S(Mt,M0,i,j);
 
-pf(S)
+for j=10:20
+    S=generating_S(Mt,M0,i,j);
+    pf(S)
+end
+

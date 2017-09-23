@@ -1,18 +1,16 @@
 %this program, test space-time correlation function and plot it
-% strategy, start with small size L, then guess the matched time length,
-% then, increase L and T with same ratio
+% what's is more than test_B.m: average over disorder configuration
 
+
+
+
+%%% stage one, construct M
 h=1;
-la1=1.0;
-la2=0;
-
-L=80;
+la1=0.0;
+la2=1.3;
+L=160;
 M=zeros(L);
-istart=ceil(L/4);
-Nx=ceil(L/4);
 dt=0.5;
-Nt=ceil(L/4);
-
 for i=1:L-2
     M(i,i)=h;
     M(i,i+1)=-la1;
@@ -22,10 +20,12 @@ M(L,L)=h;
 M(L-1,L-1)=h;
 M(L-1,L)=-la1;
 
-% C = Cnt(M,20,1, 0.1,ceil(L/2)*100 );
+ 
+%%% stage two, generating Cnt(M,i,Nx,dt,Nt)
+C = Cnt(M,ceil(L/4),ceil(L/2),dt,ceil(L/2)*2 );
 
-C = Cnt(M,istart,Nx,dt,Nt );
 
+%%% stage three, plot and FFT plot
 figure;
 imagesc(abs(C ));
 colorbar;

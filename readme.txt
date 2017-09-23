@@ -9,4 +9,6 @@ colorPlot generates *.png in current folder
 hanF.m hanning window butterfly FFT 
 test_A.m tests a single C(t,r)
 test_B.m makes use of Cnt
-test_C.m makes use of CCnt
+test_C.m makes use of CCnt   n
+
+test_D.m is unfinised filEt

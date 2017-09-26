@@ -3,15 +3,15 @@
 % then, increase L and T with same ratio
 
 h=1;
-la1=1.0;
+la1=0.99;
 la2=0;
 
 L=80;
 M=zeros(L);
 istart=ceil(L/4);
-Nx=ceil(L/4);
-dt=0.5;
-Nt=ceil(L/4);
+Nx=1;
+dt=0.1;
+Nt=200;
 
 for i=1:L-2
     M(i,i)=h;
@@ -22,19 +22,23 @@ M(L,L)=h;
 M(L-1,L-1)=h;
 M(L-1,L)=-la1;
 
-% C = Cnt(M,20,1, 0.1,ceil(L/2)*100 );
 
 C = Cnt(M,istart,Nx,dt,Nt );
+CC = CCnt(M,istart,Nx,dt,Nt);
 
-figure;
-imagesc(abs(C ));
-colorbar;
-title(['spin-spin correlation |< \sigma_{' num2str(ceil(L/4)) '}^x(t) \sigma_{' num2str(ceil(L/4)) '+r}^x(0)>|']);
-xlabel('space seperatation r, sites');
-ylabel('time t');
-set(gca,'Ydir','normal'); 
+plot(C,'.-');
+plot(2*imag(C),'.-');
 
-colorPlot(C,dt);
+
+% figure;
+% imagesc(abs(C ));
+% colorbar;
+% title(['spin-spin correlation |< \sigma_{' num2str(ceil(L/4)) '}^x(t) \sigma_{' num2str(ceil(L/4)) '+r}^x(0)>|']);
+% xlabel('space seperatation r, sites');
+% ylabel('time t');
+% set(gca,'Ydir','normal'); 
+
+% colorPlot(C,dt);
 
 
 %% below is for, plotting the z(t) curve of <AB>
